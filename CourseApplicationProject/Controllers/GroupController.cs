@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Group = Domain.Models.Group;
 
 namespace CourseApplicationProject.Controllers
 {
@@ -35,7 +36,8 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
                 goto fullName;
             }
-            if (!Regex.IsMatch(fullName, @"^[\p{L}\s]+$"))
+            bool isCorrectFullNameFormat = Regex.IsMatch(fullName, @"^[\p{L}\s]+$");
+            if (!isCorrectFullNameFormat)
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto fullName;
@@ -46,6 +48,14 @@ namespace CourseApplicationProject.Controllers
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
             }
+            Group groups = new()
+            {
+                Name = groupName,
+                TeacherFullName = fullName,
+                RoomName = roomName
+            };
+            _groupService.Create(groups);
+            ConsoleColor.Green.WriteToConsole("Group is successfully created!");
         }
     }
 }
