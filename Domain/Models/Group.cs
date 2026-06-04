@@ -9,8 +9,8 @@ namespace Domain.Models
 {
     public class Group : BaseEntity
     {
+        public string Name { get; set; }
         public string TeacherFullName { get; set; }
         public string RoomName { get; set; }
-        public string Name { get; set; }
     }
 }

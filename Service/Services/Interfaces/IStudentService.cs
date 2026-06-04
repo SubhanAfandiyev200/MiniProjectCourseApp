@@ -10,5 +10,6 @@ namespace Service.Services.Interfaces
 {
     public interface IStudentService
     {
+        void Create(Student student);
     }
 }
