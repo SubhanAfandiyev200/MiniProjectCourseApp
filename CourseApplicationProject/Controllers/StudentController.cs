@@ -118,6 +118,24 @@ namespace CourseApplicationProject.Controllers
             var result = _studentService.GetById(id);
             ConsoleColor.DarkYellow.WriteToConsole($"Id:{result.Id}, Name:{result.Name}, Surname:{result.Surname}, Age:{result.Age}, Email:{result.Email}, Group:{result.Group}");
         }
+        public void Delete()
+        {
+        idDelete: ConsoleColor.Cyan.WriteToConsole("Enter the id which you want to delete:");
+            string idStr = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(idStr))
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
+                goto idDelete;
+            }
+            bool idDeleteIsCorrectFormat = int.TryParse(idStr, out int idDeleter);
+            if(!idDeleteIsCorrectFormat)
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                goto idDelete;
+            }
+            _studentService.Delete(idDeleter);
+            ConsoleColor.Green.WriteToConsole("Id is successfully deleted!");
+        }
     }
 
 }

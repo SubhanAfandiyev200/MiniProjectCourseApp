@@ -11,6 +11,6 @@ namespace Service.Services.Interfaces
         void Create(Group group);
         List<Group> GetAllGroups();
         Group GetById(int id);
-        //Delete qalib yaz
+        void Delete(int id);
     }
 }

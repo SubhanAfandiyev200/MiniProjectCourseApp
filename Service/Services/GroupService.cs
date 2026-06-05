@@ -51,6 +51,13 @@ namespace Service.Services
         //            _studentRepo.Delete();
         //        }
         //    }
+        //}
+        public void Delete(int id)
+        {
+            var group = _groupRepo.GetById(id);
+            if (group is null) throw new NotFoundException("Group not found");
+            var students = _studentRepo.GetAll().Where(m => m.Group.Id == id);
+            
         }
     }
 }

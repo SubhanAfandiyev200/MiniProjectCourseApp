@@ -12,6 +12,6 @@ namespace Service.Services.Interfaces
     {
         void Create(Student student);
         Student GetById(int id);
-        //Delete qalib yaz
+        void Delete(int id);
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Domain.Models;
 using Repository.Repositories.Interfaces;
-using Service.Exceptions;
 using Service.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -27,12 +26,7 @@ namespace Service.Services
         }
         public void Delete(int id)
         {
-            var student = _studentRepo.GetById(id);
-            if (student is null)
-            {
-                throw new NotFoundException("Group not found");
-            }
-            _studentRepo.Delete(student);
+            _studentRepo.Delete(id);
         }
     }
 }
