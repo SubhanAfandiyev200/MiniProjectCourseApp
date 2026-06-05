@@ -57,5 +57,20 @@ namespace CourseApplicationProject.Controllers
             _groupService.Create(groups);
             ConsoleColor.Green.WriteToConsole("Group is successfully created!");
         }
+        public void GetAllGroups()
+        {
+            var result = _groupService.GetAllGroups();
+            if(result.Count == 0)
+            {
+                ConsoleColor.Red.WriteToConsole("No group exists.");
+                return;
+            }
+            foreach(var item in result)
+            {
+                ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id}, Name:{item.Name}, Teacher's full name:{item.TeacherFullName}, Room name:{item.RoomName}");
+            }
+            _groupService.GetAllGroups();
+
+        }
     }
 }

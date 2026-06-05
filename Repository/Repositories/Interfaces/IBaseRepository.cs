@@ -10,5 +10,6 @@ namespace Repository.Repositories.Interfaces
     public interface IBaseRepository<T> where T:BaseEntity
     {
         void Create(T data);
+        void Delete(T data);
     }
 }

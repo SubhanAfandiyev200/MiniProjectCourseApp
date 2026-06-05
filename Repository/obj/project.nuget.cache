@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Dg6sJttOEzs=",
+  "dgSpecHash": "vA9wnrPPU8M=",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\source\\repos\\CourseApplicationProject\\CourseApp\\Repository\\Repository.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\subhanna\\source\\repos\\MiniProjectCourseApp\\ConsoleApp\\Repository\\Repository.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\subhanna\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.23\\microsoft.windowsdesktop.app.ref.8.0.23.nupkg.sha512",
+    "C:\\Users\\subhanna\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.23\\microsoft.netcore.app.ref.8.0.23.nupkg.sha512",
+    "C:\\Users\\subhanna\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.23\\microsoft.aspnetcore.app.ref.8.0.23.nupkg.sha512"
+  ],
   "logs": []
 }

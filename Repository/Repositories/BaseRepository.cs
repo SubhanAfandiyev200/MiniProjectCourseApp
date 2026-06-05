@@ -17,5 +17,9 @@ namespace Repository.Repositories
             data.Id = idCount++;
             AppDbContext<T>.datas.Add(data);
         }
+        public void Delete(T data)
+        {
+            AppDbContext<T>.datas.Remove(data);
+        }
     }
 }

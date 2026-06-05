@@ -1,4 +1,5 @@
-﻿using Repository.Repositories.Interfaces;
+﻿using Repository.Data;
+using Repository.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,9 @@ namespace Repository.Repositories
 {
     public class GroupRepository : BaseRepository<Group>, IGroupRepository
     {
+        public List<Group> GetAllGroups()
+        {
+            return AppDbContext<Group>.datas;
+        }
     }
 }

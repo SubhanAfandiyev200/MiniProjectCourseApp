@@ -22,5 +22,13 @@ namespace Service.Services
         {
             _groupRepo.Create(group);
         }
+        public List<Group> GetAllGroups()
+        {
+            return _groupRepo.GetAllGroups();
+        }
+        public void Delete(int id)
+        {
+            _groupRepo.Delete(id);
+        }
     }
 }
