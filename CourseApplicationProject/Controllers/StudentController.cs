@@ -14,8 +14,19 @@ namespace CourseApplicationProject.Controllers
 {
     public class StudentController
     {
+        //private readonly IStudentService _studentService;
+        //private readonly IGroupService _groupService;
+        //public StudentController(IStudentService studentService)
+        //{
+        //    _studentService = studentService;
+        //}
+        //public StudentController(IGroupService groupService)
+        //{
+        //    _groupService = groupService;
+        //}
         private readonly IStudentService _studentService;
         private readonly IGroupService _groupService;
+
         public StudentController(IStudentService studentService,IGroupService groupService)
         {
             _studentService = studentService;
@@ -89,6 +100,11 @@ namespace CourseApplicationProject.Controllers
                 goto group;
             }
             var groupResult = _groupService.GetById(id);
+            if (groupResult == null)
+            {
+                ConsoleColor.Red.WriteToConsole("Group not found");
+                goto group;
+            }
             Student students = new()
             {
                 Name = studentName,
@@ -116,7 +132,7 @@ namespace CourseApplicationProject.Controllers
                 goto id;
             }
             var result = _studentService.GetById(id);
-            ConsoleColor.DarkYellow.WriteToConsole($"Id:{result.Id}, Name:{result.Name}, Surname:{result.Surname}, Age:{result.Age}, Email:{result.Email}, Group:{result.Group}");
+            ConsoleColor.DarkYellow.WriteToConsole($"Id:{result.Id}, Name:{result.Name}, Surname:{result.Surname}, Age:{result.Age}, Email:{result.Email}, Group:{result.Group.Name}");
         }
         public void Delete()
         {

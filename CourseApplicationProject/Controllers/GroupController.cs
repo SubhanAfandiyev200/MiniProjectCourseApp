@@ -57,9 +57,9 @@ namespace CourseApplicationProject.Controllers
             _groupService.Create(groups);
             ConsoleColor.Green.WriteToConsole("Group is successfully created!");
         }
-        public void GetAllGroups()
+        public void GetAll()
         {
-            var result = _groupService.GetAllGroups();
+            var result = _groupService.GetAll();
             if(result.Count == 0)
             {
                 ConsoleColor.Red.WriteToConsole("No group exists.");
@@ -69,7 +69,7 @@ namespace CourseApplicationProject.Controllers
             {
                 ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id}, Name:{item.Name}, Teacher's full name:{item.TeacherFullName}, Room name:{item.RoomName}");
             }
-            _groupService.GetAllGroups();
+            _groupService.GetAll();
         }
         public void GetById()
         {
@@ -88,6 +88,24 @@ namespace CourseApplicationProject.Controllers
             }
             var result = _groupService.GetById(id);
             ConsoleColor.DarkYellow.WriteToConsole($"Id:{result.Id}, Name:{result.Name}, Teacher's full name:{result.TeacherFullName}, Room name:{result.RoomName}");
+        }
+        public void Delete()
+        {
+        id: ConsoleColor.Cyan.WriteToConsole("Enter the id which you want to delete:");
+            string idStr = Console.ReadLine();
+            if(string.IsNullOrWhiteSpace(idStr))
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
+                goto id;
+            }
+            bool idIsCorrectFormat = int.TryParse(idStr, out int id);
+            if(!idIsCorrectFormat)
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                goto id;
+            }
+            _groupService.Delete(id);
+            ConsoleColor.Green.WriteToConsole("Id is successfully deleted!");
         }
     }
 }

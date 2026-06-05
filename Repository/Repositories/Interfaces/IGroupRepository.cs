@@ -11,6 +11,6 @@ namespace Repository.Repositories.Interfaces
 {
     public interface IGroupRepository :IBaseRepository<Group>
     {
-        public List<Group> GetAllGroups();
+        
     }
 }

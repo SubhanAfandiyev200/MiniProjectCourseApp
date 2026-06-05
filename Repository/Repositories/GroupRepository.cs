@@ -11,9 +11,6 @@ namespace Repository.Repositories
 {
     public class GroupRepository : BaseRepository<Group>, IGroupRepository
     {
-        public List<Group> GetAllGroups()
-        {
-            return AppDbContext<Group>.datas;
-        }
+        
     }
 }

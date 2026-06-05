@@ -12,5 +12,6 @@ namespace Repository.Repositories.Interfaces
         void Create(T data);
         void Delete(T data);
         public T GetById(int id);
+        public List<T> GetAll();
     }
 }

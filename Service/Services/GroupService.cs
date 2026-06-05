@@ -16,9 +16,11 @@ namespace Service.Services
     public class GroupService:IGroupService
     {
         private readonly IGroupRepository _groupRepo;
-        public GroupService(IGroupRepository groupRepo)
+        private readonly IStudentRepository _studentRepo;
+        public GroupService(IGroupRepository groupRepo, IStudentRepository studentRepo)
         {
             _groupRepo = groupRepo;
+            _studentRepo = studentRepo;
         }
         //private readonly IStudentRepository _studentRepo;
         //public GroupService(IStudentRepository studentRepo)
@@ -29,35 +31,27 @@ namespace Service.Services
         {
             _groupRepo.Create(group);
         }
-        public List<Group> GetAllGroups()
+        public List<Group> GetAll()
         {
-            return _groupRepo.GetAllGroups();
+            return _groupRepo.GetAll();
         }
         public Group GetById(int id)
         {
             return _groupRepo.GetById(id);
         }
-        //public void Delete(int id)
-        //{
-        //    Group group = _groupRepo.GetById(id);
-        //    if (group is null) throw new NotFoundException("Group not found!");
-        //    _groupRepo.Delete(group);
-        //    var result = AppDbContext<Student>.datas;
-        //    Student student = _studentRepo.GetById
-        //    foreach (var item in result)
-        //    {
-        //        if (item.Group.Id == id)
-        //        {
-        //            _studentRepo.Delete();
-        //        }
-        //    }
-        //}
         public void Delete(int id)
         {
             var group = _groupRepo.GetById(id);
-            if (group is null) throw new NotFoundException("Group not found");
-            var students = _studentRepo.GetAll().Where(m => m.Group.Id == id);
-            
+            if (group is null)
+            {
+                throw new NotFoundException("Group not found");
+            }
+            var students = _studentRepo.GetAll().Where(m => m.Group != null && m.Group.Id == id).ToList();
+            foreach (var item in students)
+            {
+                _studentRepo.Delete(item);
+            }
+            _groupRepo.Delete(group);
         }
     }
 }

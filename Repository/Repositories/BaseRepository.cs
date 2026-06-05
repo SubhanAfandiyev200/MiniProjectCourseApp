@@ -25,5 +25,9 @@ namespace Repository.Repositories
         {
             return AppDbContext<T>.datas.FirstOrDefault(m => m.Id == id);
         }
+        public List<T> GetAll()
+        {
+            return AppDbContext<T>.datas;
+        }
     }
 }
