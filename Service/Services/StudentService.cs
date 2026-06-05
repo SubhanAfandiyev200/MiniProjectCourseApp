@@ -20,5 +20,10 @@ namespace Service.Services
         {
             _studentRepo.Create(student);
         }
+        public Student GetById(int id)
+        {
+            return _studentRepo.GetById(id);
+        }
+        //delete qalib yaz
     }
 }

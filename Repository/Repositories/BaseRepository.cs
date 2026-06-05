@@ -21,5 +21,9 @@ namespace Repository.Repositories
         {
             AppDbContext<T>.datas.Remove(data);
         }
+        public T GetById(int id)
+        {
+            return AppDbContext<T>.datas.FirstOrDefault(m => m.Id == id);
+        }
     }
 }

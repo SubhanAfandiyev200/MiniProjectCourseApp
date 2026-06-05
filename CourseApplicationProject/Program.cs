@@ -11,7 +11,7 @@ StudentService studentService = new(studentRepository);
 StudentController studentController = new(studentService);
 while (true)
 {
-op: ConsoleColor.Cyan.WriteToConsole("1- create grup,2-create student");
+op: ConsoleColor.Cyan.WriteToConsole("");
     string opStr = Console.ReadLine();
     if(string.IsNullOrWhiteSpace(opStr))
     {
@@ -26,8 +26,6 @@ op: ConsoleColor.Cyan.WriteToConsole("1- create grup,2-create student");
     }
     switch (op)
     {
-        case 1:
-            groupController.Create();
-            break;
+        //case
     }
 }

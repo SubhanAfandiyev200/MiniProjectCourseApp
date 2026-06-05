@@ -15,9 +15,11 @@ namespace CourseApplicationProject.Controllers
     public class StudentController
     {
         private readonly IStudentService _studentService;
-        public StudentController(StudentService studentService)
+        private readonly IGroupService _groupService;
+        public StudentController(IStudentService studentService,IGroupService groupService)
         {
             _studentService = studentService;
+            _groupService = groupService;
         }
         public void Create()
         {
@@ -73,15 +75,48 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto studentEmail;
             }
+        group: ConsoleColor.Cyan.WriteToConsole("Enter group's Id:");
+            string groupId = Console.ReadLine();
+            if(string.IsNullOrWhiteSpace(groupId))
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
+                goto group;
+            }
+            bool isCorrectFormatGroup = int.TryParse(groupId, out int id);
+            if(!isCorrectFormatGroup)
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                goto group;
+            }
+            var groupResult = _groupService.GetById(id);
             Student students = new()
             {
                 Name = studentName,
                 Surname = studentSurname,
                 Age = studentAge,
-                Email = studentEmail
+                Email = studentEmail,
+                Group = groupResult
             };
             _studentService.Create(students);
             ConsoleColor.Green.WriteToConsole("Student is successfully created!");
+        }
+        public void GetById()
+        {
+        id: ConsoleColor.Cyan.WriteToConsole("Enter the id which you want to get:");
+            string idStr = Console.ReadLine();
+            if(string.IsNullOrWhiteSpace(idStr))
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
+                goto id;
+            }
+            bool idIsCorrectFormat = int.TryParse(idStr, out int id);
+            if(!idIsCorrectFormat)
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                goto id;
+            }
+            var result = _studentService.GetById(id);
+            ConsoleColor.DarkYellow.WriteToConsole($"Id:{result.Id}, Name:{result.Name}, Surname:{result.Surname}, Age:{result.Age}, Email:{result.Email}, Group:{result.Group}");
         }
     }
 

@@ -16,7 +16,7 @@ namespace CourseApplicationProject.Controllers
     public class GroupController
     {
         private readonly IGroupService _groupService;
-        public GroupController(GroupService groupService)
+        public GroupController(IGroupService groupService)
         {
             _groupService = groupService;
         }
@@ -70,7 +70,24 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id}, Name:{item.Name}, Teacher's full name:{item.TeacherFullName}, Room name:{item.RoomName}");
             }
             _groupService.GetAllGroups();
-
+        }
+        public void GetById()
+        {
+        id: ConsoleColor.Cyan.WriteToConsole("Enter the id which you want to get:");
+            string idStr = Console.ReadLine();
+            if(string.IsNullOrWhiteSpace(idStr))
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
+                goto id;
+            }
+            bool idIsCorrectFormat = int.TryParse(idStr, out int id);
+            if(!idIsCorrectFormat)
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                goto id;
+            }
+            var result = _groupService.GetById(id);
+            ConsoleColor.DarkYellow.WriteToConsole($"Id:{result.Id}, Name:{result.Name}, Teacher's full name:{result.TeacherFullName}, Room name:{result.RoomName}");
         }
     }
 }

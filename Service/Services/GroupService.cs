@@ -1,5 +1,8 @@
 ﻿using Domain.Models;
+using Repository.Data;
 using Repository.Repositories.Interfaces;
+using Service.Exceptions;
+using Service.Helpers.Extensions;
 using Service.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -17,7 +20,11 @@ namespace Service.Services
         {
             _groupRepo = groupRepo;
         }
-
+        //private readonly IStudentRepository _studentRepo;
+        //public GroupService(IStudentRepository studentRepo)
+        //{
+        //    _studentRepo = studentRepo;
+        //}
         public void Create(Group group)
         {
             _groupRepo.Create(group);
@@ -26,9 +33,24 @@ namespace Service.Services
         {
             return _groupRepo.GetAllGroups();
         }
-        public void Delete(int id)
+        public Group GetById(int id)
         {
-            _groupRepo.Delete(id);
+            return _groupRepo.GetById(id);
+        }
+        //public void Delete(int id)
+        //{
+        //    Group group = _groupRepo.GetById(id);
+        //    if (group is null) throw new NotFoundException("Group not found!");
+        //    _groupRepo.Delete(group);
+        //    var result = AppDbContext<Student>.datas;
+        //    Student student = _studentRepo.GetById
+        //    foreach (var item in result)
+        //    {
+        //        if (item.Group.Id == id)
+        //        {
+        //            _studentRepo.Delete();
+        //        }
+        //    }
         }
     }
 }

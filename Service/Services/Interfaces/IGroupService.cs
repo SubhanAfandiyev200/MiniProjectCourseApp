@@ -10,6 +10,7 @@ namespace Service.Services.Interfaces
     {
         void Create(Group group);
         List<Group> GetAllGroups();
-        void Delete(int id);
+        Group GetById(int id);
+        //Delete qalib yaz
     }
 }

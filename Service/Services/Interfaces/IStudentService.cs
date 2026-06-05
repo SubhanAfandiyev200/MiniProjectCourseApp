@@ -11,5 +11,7 @@ namespace Service.Services.Interfaces
     public interface IStudentService
     {
         void Create(Student student);
+        Student GetById(int id);
+        //Delete qalib yaz
     }
 }
