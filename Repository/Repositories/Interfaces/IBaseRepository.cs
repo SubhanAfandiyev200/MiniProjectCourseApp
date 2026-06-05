@@ -13,5 +13,6 @@ namespace Repository.Repositories.Interfaces
         void Delete(T data);
         public T GetById(int id);
         public List<T> GetAll();
+        public IEnumerable<T> GetAllWithCondition(Func<T, bool> predicate);
     }
 }

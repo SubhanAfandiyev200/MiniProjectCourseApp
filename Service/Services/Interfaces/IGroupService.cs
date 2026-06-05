@@ -12,5 +12,8 @@ namespace Service.Services.Interfaces
         List<Group> GetAll();
         Group GetById(int id);
         void Delete(int id);
+        IEnumerable<Group> GetAllGroupsByTeacher(string fullName);
+        IEnumerable<Group> GetAllGroupsByRoom(string roomName);
+        IEnumerable<Group> GetAllGroupsByName(string name);
     }
 }

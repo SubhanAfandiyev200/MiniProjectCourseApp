@@ -49,5 +49,8 @@ op: ConsoleColor.Cyan.WriteToConsole("Select operation:\n 1 - Create group\n 2 -
         case (int)Operations.GetStudentById:
             studentController.GetById();
             break;
+        case (int)Operations.GetAllGroupsByTeacher:
+            groupController.GetAllGroupsByTeacher();
+            break;
     }
 }

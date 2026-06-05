@@ -29,5 +29,11 @@ namespace Repository.Repositories
         {
             return AppDbContext<T>.datas;
         }
+
+        public IEnumerable<T> GetAllWithCondition(Func<T, bool> predicate)
+        {
+            var result = AppDbContext<T>.datas;
+            return result.Where(predicate);
+        }
     }
 }

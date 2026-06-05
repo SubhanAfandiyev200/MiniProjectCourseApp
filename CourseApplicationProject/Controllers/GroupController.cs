@@ -107,5 +107,35 @@ namespace CourseApplicationProject.Controllers
             _groupService.Delete(id);
             ConsoleColor.Green.WriteToConsole("Id is successfully deleted!");
         }
+        public void GetAllGroupsByTeacher()
+        {
+        nameSearch: ConsoleColor.Cyan.WriteToConsole("Enter teacher's full name to search group:");
+            string fullName = Console.ReadLine();
+            if(string.IsNullOrWhiteSpace(fullName))
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
+                goto nameSearch;
+            }
+            var result = _groupService.GetAllGroupsByTeacher(fullName);
+            foreach (var item in result)
+            {
+                ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id}, Teacher's full name:{item.TeacherFullName},  Name:{item.Name}, Room name:{item.RoomName}");
+            }
+        }
+        public void GetAllGroupsByRoom()
+        {
+        roomName: ConsoleColor.Cyan.WriteToConsole("Enter room's name to search group:");
+            string roomName = Console.ReadLine();
+            if(string.IsNullOrWhiteSpace(roomName))
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
+                goto roomName;
+            }
+            var result = _groupService.GetAllGroupsByRoom(roomName);
+            foreach (var item in result)
+            {
+                ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id},Room name:{item.RoomName}, Teacher's full name:{item.TeacherFullName},  Name:{item.Name}");
+            }
+        }
     }
 }

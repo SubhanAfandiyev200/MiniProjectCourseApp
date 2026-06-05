@@ -22,11 +22,6 @@ namespace Service.Services
             _groupRepo = groupRepo;
             _studentRepo = studentRepo;
         }
-        //private readonly IStudentRepository _studentRepo;
-        //public GroupService(IStudentRepository studentRepo)
-        //{
-        //    _studentRepo = studentRepo;
-        //}
         public void Create(Group group)
         {
             _groupRepo.Create(group);
@@ -52,6 +47,21 @@ namespace Service.Services
                 _studentRepo.Delete(item);
             }
             _groupRepo.Delete(group);
+        }
+        public IEnumerable<Group> GetAllGroupsByTeacher(string fullName)
+        {
+            var result = _groupRepo.GetAllWithCondition(m => m.TeacherFullName.Contains(fullName));
+            return result;
+        }
+        public IEnumerable<Group> GetAllGroupsbyRoom(string roomName)
+        {
+            var result = _groupRepo.GetAllWithCondition(m => m.RoomName.Contains(roomName));
+            return result;
+        }
+        public IEnumerable<Group> GetAllGroupsByName(string name)
+        {
+            var result = _groupRepo.GetAllWithCondition(m => m.RoomName.Contains(name));
+            return result;
         }
     }
 }
