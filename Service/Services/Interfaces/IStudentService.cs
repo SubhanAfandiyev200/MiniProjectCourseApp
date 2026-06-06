@@ -13,7 +13,8 @@ namespace Service.Services.Interfaces
         void Create(Student student);
         Student GetById(int id);
         void Delete(int id);
-        IEnumerable<Student> GetStudentByAge(int minAge,int maxAge);
-
+        IEnumerable<Student> GetStudentsByAge(int minAge,int maxAge);
+        IEnumerable<Student> GetStudentsByGroupId(int id);
+        IEnumerable<Student> GetStudentsByNameOrSurname(string text);
     }
 }

@@ -14,7 +14,6 @@ C:\Users\User\Desktop\MiniProjectCourseApp\CourseApplicationProject\obj\Debug\ne
 C:\Users\User\Desktop\MiniProjectCourseApp\CourseApplicationProject\obj\Debug\net8.0\CourseApplicationProject.AssemblyInfoInputs.cache
 C:\Users\User\Desktop\MiniProjectCourseApp\CourseApplicationProject\obj\Debug\net8.0\CourseApplicationProject.AssemblyInfo.cs
 C:\Users\User\Desktop\MiniProjectCourseApp\CourseApplicationProject\obj\Debug\net8.0\CourseApplicationProject.csproj.CoreCompileInputs.cache
-C:\Users\User\Desktop\MiniProjectCourseApp\CourseApplicationProject\obj\Debug\net8.0\CourseApplicationProject.sourcelink.json
 C:\Users\User\Desktop\MiniProjectCourseApp\CourseApplicationProject\obj\Debug\net8.0\CourseAp.91584396.Up2Date
 C:\Users\User\Desktop\MiniProjectCourseApp\CourseApplicationProject\obj\Debug\net8.0\CourseApplicationProject.dll
 C:\Users\User\Desktop\MiniProjectCourseApp\CourseApplicationProject\obj\Debug\net8.0\refint\CourseApplicationProject.dll

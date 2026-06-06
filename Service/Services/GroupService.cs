@@ -32,7 +32,12 @@ namespace Service.Services
         }
         public Group GetById(int id)
         {
-            return _groupRepo.GetById(id);
+            var result = _groupRepo.GetById(id);
+            if (result is null)
+            {
+                throw new NotFoundException("Group with this id doesn't exist!");
+            }
+            return result;
         }
         public void Delete(int id)
         {
@@ -50,20 +55,30 @@ namespace Service.Services
         }
         public IEnumerable<Group> GetAllGroupsByTeacher(string fullName)
         {
-            var result = _groupRepo.GetAllWithCondition(m => m.TeacherFullName.Equals
-            (fullName)).ToList();
+            var result = _groupRepo.GetAllWithCondition(m => string.IsNullOrWhiteSpace(fullName) || m.TeacherFullName.Contains(fullName)).ToList();
+            if(result.Count == 0)
+            {
+                throw new NotFoundException("Group with this teacher fullname not found!");
+            }
             return result;
         }
         public IEnumerable<Group> GetAllGroupsByRoom(string roomName)
         {
-            var result = _groupRepo.GetAllWithCondition(m => m.RoomName.Equals(roomName)).ToList();
+            var result = _groupRepo.GetAllWithCondition(m => string.IsNullOrWhiteSpace(roomName) || m.RoomName.Contains(roomName)).ToList();
+            if(result.Count == 0)
+            {
+                throw new NotFoundException("Group with this room name not found!");
+            }
             return result;
         }
         public IEnumerable<Group> GetAllGroupsByName(string name)
         {
-            var result = _groupRepo.GetAllWithCondition(m => m.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).ToList();
+            var result = _groupRepo.GetAllWithCondition(m => string.IsNullOrWhiteSpace(name) || m.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).ToList();
+            if(result.Count == 0)
+            {
+                throw new NotFoundException("Group with this name not found!");
+            }
             return result;
         }
-        
     }
 }

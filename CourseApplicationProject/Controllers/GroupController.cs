@@ -1,4 +1,5 @@
-﻿using Service.Helpers.Constants;
+﻿using Service.Exceptions;
+using Service.Helpers.Constants;
 using Service.Helpers.Extensions;
 using Service.Services;
 using Service.Services.Interfaces;
@@ -29,6 +30,12 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
                 goto groupName;
             }
+            var group = _groupService.GetAll().FirstOrDefault(m => m.Name.Equals(groupName, StringComparison.OrdinalIgnoreCase));
+            if (group != null)
+            {
+                ConsoleColor.Red.WriteToConsole("Group already exists!");
+                return;
+            }
         fullName: ConsoleColor.Cyan.WriteToConsole("Enter teacher's full name:");
             string fullName = Console.ReadLine();
             if(string.IsNullOrWhiteSpace(fullName))
@@ -36,8 +43,8 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
                 goto fullName;
             }
-            bool isCorrectFullNameFormat = Regex.IsMatch(fullName, @"^[\p{L}\s]+$");
-            if (!isCorrectFullNameFormat)
+            bool isValidName = Regex.IsMatch(fullName, @"^[\p{L}\s]+$");
+            if (!isValidName)
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto fullName;
@@ -87,8 +94,16 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto id;
             }
-            var result = _groupService.GetById(id);
-            ConsoleColor.DarkYellow.WriteToConsole($"Id:{result.Id}, Name:{result.Name}, Teacher's full name:{result.TeacherFullName}, Room name:{result.RoomName}");
+            try
+            {
+                var result = _groupService.GetById(id);
+                ConsoleColor.DarkYellow.WriteToConsole($"Id:{result.Id}, Name:{result.Name}, Teacher's full name:{result.TeacherFullName}, Room name:{result.RoomName}");
+            }
+            catch (NotFoundException ex)
+            {
+                ConsoleColor.Red.WriteToConsole("Group with this id doesn't exist!");
+                return; 
+            }
         }
         public void Delete()
         {
@@ -105,52 +120,70 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto id;
             }
-            _groupService.Delete(id);
+            try
+            {
+               _groupService.Delete(id);
+                
+            }
+           catch (NotFoundException ex)
+            {
+                ConsoleColor.Red.WriteToConsole(ex.Message);
+                return;
+            }
             ConsoleColor.Green.WriteToConsole("Group and its students are successfully deleted!");
         }
         public void GetAllGroupsByTeacher()
         {
-        nameSearch: ConsoleColor.Cyan.WriteToConsole("Enter teacher's full name to search group:");
+            ConsoleColor.Cyan.WriteToConsole("Enter teacher's full name to search group:");
             string fullName = Console.ReadLine();
-            if(string.IsNullOrWhiteSpace(fullName))
+            try
             {
-                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
-                goto nameSearch;
+                var result = _groupService.GetAllGroupsByTeacher(fullName);
+                foreach (var item in result)
+                {
+                    ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id}, Teacher's full name:{item.TeacherFullName},  Name:{item.Name}, Room name:{item.RoomName}");
+                }
             }
-            var result = _groupService.GetAllGroupsByTeacher(fullName);
-            foreach (var item in result)
+            catch (NotFoundException ex)
             {
-                ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id}, Teacher's full name:{item.TeacherFullName},  Name:{item.Name}, Room name:{item.RoomName}");
+                ConsoleColor.Red.WriteToConsole(ex.Message);
+                return;
             }
         }
         public void GetAllGroupsByRoom()
         {
-        roomName: ConsoleColor.Cyan.WriteToConsole("Enter room's name to search group:");
+            ConsoleColor.Cyan.WriteToConsole("Enter room's name to search group:");
             string roomName = Console.ReadLine();
-            if(string.IsNullOrWhiteSpace(roomName))
+            try
             {
-                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
-                goto roomName;
+                var result = _groupService.GetAllGroupsByRoom(roomName);
+                foreach (var item in result)
+                {
+                    ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id},Room name:{item.RoomName}, Teacher's full name:{item.TeacherFullName},  Name:{item.Name}");
+                }
             }
-            var result = _groupService.GetAllGroupsByRoom(roomName);
-            foreach (var item in result)
+            catch (NotFoundException ex)
             {
-                ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id},Room name:{item.RoomName}, Teacher's full name:{item.TeacherFullName},  Name:{item.Name}");
+                ConsoleColor.Red.WriteToConsole(ex.Message);
+                return;
             }
         }
         public void GetAllGroupsByName()
         {
-        groupName: ConsoleColor.Cyan.WriteToConsole("Enter group's name to search:");
+            ConsoleColor.Cyan.WriteToConsole("Enter group's name to search:");
             string groupName = Console.ReadLine();
-            if(string.IsNullOrWhiteSpace(groupName))
+            try
             {
-                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
-                goto groupName;
+                var result = _groupService.GetAllGroupsByName(groupName);
+                foreach (var item in result)
+                {
+                    ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id}, Name:{item.Name}, Room name:{item.RoomName}, Teacher's full name:{item.TeacherFullName}");
+                }
             }
-            var result = _groupService.GetAllGroupsByName(groupName);
-            foreach (var item in result)
+            catch (NotFoundException ex)
             {
-                ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id}, Name:{item.Name}, Room name:{item.RoomName}, Teacher's full name:{item.TeacherFullName}");
+                ConsoleColor.Red.WriteToConsole(ex.Message);
+                return;
             }
         }
     }

@@ -12,11 +12,16 @@ namespace CourseApplicationProject.Enums
         DeleteGroup,
         GetAllGroups,
         GetGroupsById,
+        GetAllGroupsByTeacher,
+        GetAllGroupsByRoom,
+        GetAllGroupsByName,
+        UpdateGroup,
         CreateStudent,
         DeleteStudent,
         GetStudentById,
-        GetAllGroupsByTeacher,
-        GetAllGroupsByRoom,
-        GetAllGroupsByName
+        GetStudentsByAge,
+        GetStudentsByGroupId,
+        GetStudentsByNameOrSurname,
+        UpdateStudent
     }
 }

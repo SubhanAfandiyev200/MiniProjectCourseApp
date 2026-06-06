@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Service.Exceptions;
 using Service.Helpers.Constants;
 using Service.Helpers.Extensions;
 using Service.Services;
@@ -14,16 +15,6 @@ namespace CourseApplicationProject.Controllers
 {
     public class StudentController
     {
-        //private readonly IStudentService _studentService;
-        //private readonly IGroupService _groupService;
-        //public StudentController(IStudentService studentService)
-        //{
-        //    _studentService = studentService;
-        //}
-        //public StudentController(IGroupService groupService)
-        //{
-        //    _groupService = groupService;
-        //}
         private readonly IStudentService _studentService;
         private readonly IGroupService _groupService;
 
@@ -136,8 +127,16 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto id;
             }
-            var result = _studentService.GetById(id);
-            ConsoleColor.DarkYellow.WriteToConsole($"Id:{result.Id}, Name:{result.Name}, Surname:{result.Surname}, Age:{result.Age}, Email:{result.Email}, Group:{result.Group.Name}");
+            try
+            {
+                var result = _studentService.GetById(id);
+                ConsoleColor.DarkYellow.WriteToConsole($"Id:{result.Id}, Name:{result.Name}, Surname:{result.Surname}, Age:{result.Age}, Email:{result.Email}, Group:{result.Group.Name}");
+            }
+            catch (NotFoundException ex)
+            {
+                ConsoleColor.Red.WriteToConsole(ex.Message);
+                return;
+            }
         }
         public void Delete()
         {
@@ -154,46 +153,115 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto idDelete;
             }
-            _studentService.Delete(idDeleter);
+            try
+            {
+                _studentService.Delete(idDeleter);
+            }
+            catch (NotFoundException ex)
+            {
+                ConsoleColor.Red.WriteToConsole(ex.Message);
+                return;
+            }
+           
             ConsoleColor.Green.WriteToConsole("Id is successfully deleted!");
         }
-        public void GetStudentByAge()
+        public void GetStudentsByAge()
         {
         age: ConsoleColor.Cyan.WriteToConsole("Add min age:");
             string minAge = Console.ReadLine();
-            if(string.IsNullOrWhiteSpace(minAge))
+            if (string.IsNullOrWhiteSpace(minAge))
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
                 goto age;
             }
             bool minAgeisCorrectFormat = int.TryParse(minAge, out int min);
-            if(!minAgeisCorrectFormat)
+            if (!minAgeisCorrectFormat)
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto age;
             }
             ConsoleColor.Cyan.WriteToConsole("Enter max age:");
             string maxAge = Console.ReadLine();
-            if(string.IsNullOrWhiteSpace(maxAge))
+            if (string.IsNullOrWhiteSpace(maxAge))
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
                 goto age;
             }
             bool maxAgeIsCorrectFormat = int.TryParse(maxAge, out int max);
-            if(!maxAgeIsCorrectFormat)
+            if (!maxAgeIsCorrectFormat)
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto age;
             }
-            if (min>max)
+            if (min > max)
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto age;
             }
-            var result = _studentService.GetStudentByAge(min, max);
-            foreach (var item in result)
+            try
             {
-                ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id}, Name:{item.Name}, Surname:{item.Surname}, Age:{item.Age}, Email:{item.Email}, Group:{item.Group.Name}");
+                var result = _studentService.GetStudentsByAge(min, max);
+                foreach (var item in result)
+                {
+                    ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id}, Name:{item.Name}, Surname:{item.Surname}, Age:{item.Age}, Email:{item.Email}, Group:{item.Group.Name}");
+                }
+            }
+            catch (NotFoundException ex)
+            {
+                ConsoleColor.Red.WriteToConsole(ex.Message);
+                return;
+            }
+        }
+        public void GetStudentsByGroupId()
+        {
+        id: ConsoleColor.Cyan.WriteToConsole("Enter the group's id which ypu want to get:");
+            string idStr = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(idStr))
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
+                goto id;
+            }
+            bool idIsCorrectFormat = int.TryParse(idStr, out int id);
+            if(!idIsCorrectFormat)
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                goto id;
+            }
+            try
+            {
+                var result = _studentService.GetStudentsByGroupId(id);
+                foreach (var item in result)
+                {
+                    ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id}, Name:{item.Name}, Surname:{item.Surname}, Age:{item.Age}, Email:{item.Email}, Group:{item.Group.Name}");
+                }
+            }
+            catch (NotFoundException ex)
+            {
+                ConsoleColor.Red.WriteToConsole(ex.Message);
+                return;
+            }
+        }
+        public void GetStudentsByNameOrSurname()
+        {
+        nameOrSurname: ConsoleColor.Cyan.WriteToConsole("Enter student's name or surname to search:");
+            string text = Console.ReadLine();
+            if(string.IsNullOrWhiteSpace(text))
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
+                goto nameOrSurname;
+            }
+           try
+            {
+                var result = _studentService.GetStudentsByNameOrSurname(text);
+                foreach (var item in result)
+                {
+                    ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id}, Name:{item.Name}, Surname:{item.Surname}, Age:{item.Age}, Email:{item.Email}, Group:{item.Group.Name}");
+                }
+            }
+            catch (NotFoundException ex)
+            {
+                ConsoleColor.Red.WriteToConsole(ex.Message);
+                return;
             }
         }
     }
