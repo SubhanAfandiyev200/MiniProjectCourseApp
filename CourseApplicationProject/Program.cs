@@ -12,8 +12,8 @@ StudentService studentService =new(studentRepository);
 StudentController studentController = new(studentService, groupService); 
 while (true)
 {
-op: ConsoleColor.Cyan.WriteToConsole("Select operation:\n 1 - Create group\n 2 - Delete group\n 3 - Get all groups\n 4 - Get groups by id\n");
-    ConsoleColor.DarkYellow.WriteToConsole(" 5 - Create student\n 6 - Delete student\n 7 - Get student by id");
+op: ConsoleColor.Cyan.WriteToConsole("Select operation:\n 1 - Create group\n 2 - Delete group\n 3 - Get all groups\n 4 - Get groups by id\n  9 - Get groups by teacher name\n 10 - Get groups by room name\n \n 11 - get groups by name");
+    ConsoleColor.DarkYellow.WriteToConsole(" 5 - Create student\n 6 - Delete student\n 7 - Get student by id\n");
     string opStr = Console.ReadLine();
     if(string.IsNullOrWhiteSpace(opStr))
     {
@@ -51,6 +51,12 @@ op: ConsoleColor.Cyan.WriteToConsole("Select operation:\n 1 - Create group\n 2 -
             break;
         case (int)Operations.GetAllGroupsByTeacher:
             groupController.GetAllGroupsByTeacher();
+            break;
+        case (int)Operations.GetAllGroupsByRoom:
+            groupController.GetAllGroupsByRoom();
+            break;
+        case (int)Operations.GetAllGroupsByName:
+            groupController.GetAllGroupsByName();
             break;
     }
 }

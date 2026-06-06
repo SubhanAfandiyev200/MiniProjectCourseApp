@@ -50,18 +50,20 @@ namespace Service.Services
         }
         public IEnumerable<Group> GetAllGroupsByTeacher(string fullName)
         {
-            var result = _groupRepo.GetAllWithCondition(m => m.TeacherFullName.Contains(fullName));
+            var result = _groupRepo.GetAllWithCondition(m => m.TeacherFullName.Equals
+            (fullName)).ToList();
             return result;
         }
-        public IEnumerable<Group> GetAllGroupsbyRoom(string roomName)
+        public IEnumerable<Group> GetAllGroupsByRoom(string roomName)
         {
-            var result = _groupRepo.GetAllWithCondition(m => m.RoomName.Contains(roomName));
+            var result = _groupRepo.GetAllWithCondition(m => m.RoomName.Equals(roomName)).ToList();
             return result;
         }
         public IEnumerable<Group> GetAllGroupsByName(string name)
         {
-            var result = _groupRepo.GetAllWithCondition(m => m.RoomName.Contains(name));
+            var result = _groupRepo.GetAllWithCondition(m => m.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).ToList();
             return result;
         }
+        
     }
 }

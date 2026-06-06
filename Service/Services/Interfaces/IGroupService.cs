@@ -15,5 +15,6 @@ namespace Service.Services.Interfaces
         IEnumerable<Group> GetAllGroupsByTeacher(string fullName);
         IEnumerable<Group> GetAllGroupsByRoom(string roomName);
         IEnumerable<Group> GetAllGroupsByName(string name);
+        
     }
 }

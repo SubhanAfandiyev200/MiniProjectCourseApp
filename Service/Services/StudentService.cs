@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Service.Services
 {
@@ -33,6 +34,11 @@ namespace Service.Services
                 throw new NotFoundException("Group not found");
             }
             _studentRepo.Delete(student);
+        }
+        public IEnumerable<Student> GetStudentByAge(int minAge, int maxAge)
+        {
+            var result = _studentRepo.GetAllWithCondition(m => m.Age > minAge && m.Age < maxAge).ToList();
+            return result;
         }
     }
 }

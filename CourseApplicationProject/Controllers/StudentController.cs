@@ -73,6 +73,11 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto studentAge;
             }
+            if(!(studentAge>=15 && studentAge<=60))
+            {
+                ConsoleColor.Red.WriteToConsole("Student age must be between 15 and 60");
+                goto studentAge;
+            }
         studentEmail: ConsoleColor.Cyan.WriteToConsole("Enter student's email:");
             string studentEmail = Console.ReadLine();
             if(string.IsNullOrWhiteSpace(studentEmail))
@@ -151,6 +156,45 @@ namespace CourseApplicationProject.Controllers
             }
             _studentService.Delete(idDeleter);
             ConsoleColor.Green.WriteToConsole("Id is successfully deleted!");
+        }
+        public void GetStudentByAge()
+        {
+        age: ConsoleColor.Cyan.WriteToConsole("Add min age:");
+            string minAge = Console.ReadLine();
+            if(string.IsNullOrWhiteSpace(minAge))
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
+                goto age;
+            }
+            bool minAgeisCorrectFormat = int.TryParse(minAge, out int min);
+            if(!minAgeisCorrectFormat)
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                goto age;
+            }
+            ConsoleColor.Cyan.WriteToConsole("Enter max age:");
+            string maxAge = Console.ReadLine();
+            if(string.IsNullOrWhiteSpace(maxAge))
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
+                goto age;
+            }
+            bool maxAgeIsCorrectFormat = int.TryParse(maxAge, out int max);
+            if(!maxAgeIsCorrectFormat)
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                goto age;
+            }
+            if (min>max)
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                goto age;
+            }
+            var result = _studentService.GetStudentByAge(min, max);
+            foreach (var item in result)
+            {
+                ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id}, Name:{item.Name}, Surname:{item.Surname}, Age:{item.Age}, Email:{item.Email}, Group:{item.Group.Name}");
+            }
         }
     }
 

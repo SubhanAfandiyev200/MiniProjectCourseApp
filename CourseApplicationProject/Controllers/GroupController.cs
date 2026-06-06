@@ -47,6 +47,7 @@ namespace CourseApplicationProject.Controllers
             if(string.IsNullOrWhiteSpace(roomName))
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
+                goto roomName;
             }
             Group groups = new()
             {
@@ -105,7 +106,7 @@ namespace CourseApplicationProject.Controllers
                 goto id;
             }
             _groupService.Delete(id);
-            ConsoleColor.Green.WriteToConsole("Id is successfully deleted!");
+            ConsoleColor.Green.WriteToConsole("Group and its students are successfully deleted!");
         }
         public void GetAllGroupsByTeacher()
         {
@@ -135,6 +136,21 @@ namespace CourseApplicationProject.Controllers
             foreach (var item in result)
             {
                 ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id},Room name:{item.RoomName}, Teacher's full name:{item.TeacherFullName},  Name:{item.Name}");
+            }
+        }
+        public void GetAllGroupsByName()
+        {
+        groupName: ConsoleColor.Cyan.WriteToConsole("Enter group's name to search:");
+            string groupName = Console.ReadLine();
+            if(string.IsNullOrWhiteSpace(groupName))
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
+                goto groupName;
+            }
+            var result = _groupService.GetAllGroupsByName(groupName);
+            foreach (var item in result)
+            {
+                ConsoleColor.DarkYellow.WriteToConsole($"Id:{item.Id}, Name:{item.Name}, Room name:{item.RoomName}, Teacher's full name:{item.TeacherFullName}");
             }
         }
     }
