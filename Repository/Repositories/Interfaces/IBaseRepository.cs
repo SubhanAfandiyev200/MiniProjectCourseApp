@@ -14,5 +14,6 @@ namespace Repository.Repositories.Interfaces
         public T GetById(int id);
         public List<T> GetAll();
         public IEnumerable<T> GetAllWithCondition(Func<T, bool> predicate);
+        public void Update(int id, T data);
     }
 }

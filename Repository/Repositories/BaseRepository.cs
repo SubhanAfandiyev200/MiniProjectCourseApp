@@ -35,5 +35,9 @@ namespace Repository.Repositories
             var result = AppDbContext<T>.datas;
             return result.Where(predicate);
         }
+        public void Update(int id, T data)
+        {
+            var result = AppDbContext<T>.datas.FirstOrDefault(m => m.Id == id);
+        }
     }
 }

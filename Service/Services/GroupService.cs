@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using Repository.Data;
+using Repository.Repositories;
 using Repository.Repositories.Interfaces;
 using Service.Exceptions;
 using Service.Helpers.Extensions;
@@ -55,7 +56,7 @@ namespace Service.Services
         }
         public IEnumerable<Group> GetAllGroupsByTeacher(string fullName)
         {
-            var result = _groupRepo.GetAllWithCondition(m => string.IsNullOrWhiteSpace(fullName) || m.TeacherFullName.Contains(fullName)).ToList();
+            var result = _groupRepo.GetAllWithCondition(m => string.IsNullOrWhiteSpace(fullName) || m.TeacherFullName.Contains(fullName.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
             if(result.Count == 0)
             {
                 throw new NotFoundException("Group with this teacher fullname not found!");
@@ -64,7 +65,7 @@ namespace Service.Services
         }
         public IEnumerable<Group> GetAllGroupsByRoom(string roomName)
         {
-            var result = _groupRepo.GetAllWithCondition(m => string.IsNullOrWhiteSpace(roomName) || m.RoomName.Contains(roomName)).ToList();
+            var result = _groupRepo.GetAllWithCondition(m => string.IsNullOrWhiteSpace(roomName) || m.RoomName.Contains(roomName.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
             if(result.Count == 0)
             {
                 throw new NotFoundException("Group with this room name not found!");
@@ -73,12 +74,34 @@ namespace Service.Services
         }
         public IEnumerable<Group> GetAllGroupsByName(string name)
         {
-            var result = _groupRepo.GetAllWithCondition(m => string.IsNullOrWhiteSpace(name) || m.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).ToList();
+            var result = _groupRepo.GetAllWithCondition(m => string.IsNullOrWhiteSpace(name) || m.Name.Contains(name.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
             if(result.Count == 0)
             {
                 throw new NotFoundException("Group with this name not found!");
             }
             return result;
+        }
+        public void Update(int id,Group group)
+        {
+            var result = _groupRepo.GetById(id);
+            if (result == null)
+            {
+                throw new NotFoundException("Group with this id not found!");
+            }
+            if (!string.IsNullOrWhiteSpace(group.Name))
+            {
+                result.Name = group.Name;
+            }
+
+            if (!string.IsNullOrWhiteSpace(group.TeacherFullName))
+            {
+                result.TeacherFullName = group.TeacherFullName;
+            }
+
+            if (!string.IsNullOrWhiteSpace(group.RoomName))
+            {
+                result.RoomName = group.RoomName;
+            }
         }
     }
 }

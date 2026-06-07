@@ -16,5 +16,7 @@ namespace Service.Services.Interfaces
         IEnumerable<Student> GetStudentsByAge(int minAge,int maxAge);
         IEnumerable<Student> GetStudentsByGroupId(int id);
         IEnumerable<Student> GetStudentsByNameOrSurname(string text);
+        void Update(int id, Student student);
+        
     }
 }

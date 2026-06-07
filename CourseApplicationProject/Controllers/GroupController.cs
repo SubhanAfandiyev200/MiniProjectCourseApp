@@ -186,5 +186,38 @@ namespace CourseApplicationProject.Controllers
                 return;
             }
         }
+        public void Update()
+        {
+            try
+            {
+            id: ConsoleColor.Cyan.WriteToConsole("Enter the group's id to update: ");
+                string idStr = Console.ReadLine();
+                bool idIsCorrectFormat = int.TryParse(idStr, out int id);
+                if (!idIsCorrectFormat)
+                {
+                    ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                    goto id;
+                }
+                ConsoleColor.Cyan.WriteToConsole("Enter group's name:");
+                string name = Console.ReadLine();
+                ConsoleColor.Cyan.WriteToConsole("Enter teacher's full name:");
+                string fullName = Console.ReadLine();
+                ConsoleColor.Cyan.WriteToConsole("Enter room's name:");
+                string roomName = Console.ReadLine();
+                Group group = new()
+                {
+                    Name = name,
+                    TeacherFullName = fullName,
+                    RoomName = roomName
+                };
+                _groupService.Update(id, group);
+
+                ConsoleColor.Green.WriteToConsole("Group successfully created!");
+            }
+            catch (NotFoundException ex)
+            {
+                ConsoleColor.Red.WriteToConsole(ex.Message);
+            }
+        }
     }
 }

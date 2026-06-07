@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Group = Domain.Models.Group;
 
 namespace CourseApplicationProject.Controllers
 {
@@ -18,7 +19,7 @@ namespace CourseApplicationProject.Controllers
         private readonly IStudentService _studentService;
         private readonly IGroupService _groupService;
 
-        public StudentController(IStudentService studentService,IGroupService groupService)
+        public StudentController(IStudentService studentService, IGroupService groupService)
         {
             _studentService = studentService;
             _groupService = groupService;
@@ -27,7 +28,7 @@ namespace CourseApplicationProject.Controllers
         {
         studentName: ConsoleColor.Cyan.WriteToConsole("Enter student's name:");
             string studentName = Console.ReadLine();
-            if(string.IsNullOrWhiteSpace(studentName))
+            if (string.IsNullOrWhiteSpace(studentName))
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
                 goto studentName;
@@ -53,76 +54,79 @@ namespace CourseApplicationProject.Controllers
             }
         studentAge: ConsoleColor.Cyan.WriteToConsole("Enter student's age:");
             string studentAgeStr = Console.ReadLine();
-            if(string.IsNullOrWhiteSpace(studentAgeStr))
+            if (string.IsNullOrWhiteSpace(studentAgeStr))
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
                 goto studentAge;
             }
             bool studentAgeIsNumber = int.TryParse(studentAgeStr, out int studentAge);
-            if(!studentAgeIsNumber)
+            if (!studentAgeIsNumber)
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto studentAge;
             }
-            if(!(studentAge>=15 && studentAge<=60))
+            if (!(studentAge >= 15 && studentAge <= 60))
             {
                 ConsoleColor.Red.WriteToConsole("Student age must be between 15 and 60");
                 goto studentAge;
             }
         studentEmail: ConsoleColor.Cyan.WriteToConsole("Enter student's email:");
             string studentEmail = Console.ReadLine();
-            if(string.IsNullOrWhiteSpace(studentEmail))
+            if (string.IsNullOrWhiteSpace(studentEmail))
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
                 goto studentEmail;
             }
-            bool isValidEmail =Regex.IsMatch(studentEmail, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+            bool isValidEmail = Regex.IsMatch(studentEmail, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
             if (!isValidEmail)
             {
-                ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                ConsoleColor.Red.WriteToConsole("Email format is wrong(For example: you@gmail.com).Please try again:");
                 goto studentEmail;
             }
         group: ConsoleColor.Cyan.WriteToConsole("Enter group's Id:");
             string groupId = Console.ReadLine();
-            if(string.IsNullOrWhiteSpace(groupId))
+            if (string.IsNullOrWhiteSpace(groupId))
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
                 goto group;
             }
             bool isCorrectFormatGroup = int.TryParse(groupId, out int id);
-            if(!isCorrectFormatGroup)
+            if (!isCorrectFormatGroup)
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto group;
             }
-            var groupResult = _groupService.GetById(id);
-            if (groupResult == null)
+            try
             {
-                ConsoleColor.Red.WriteToConsole("Group not found");
-                goto group;
+                var groupResult = _groupService.GetById(id);
+                Student students = new()
+                {
+                    Name = studentName,
+                    Surname = studentSurname,
+                    Age = studentAge,
+                    Email = studentEmail,
+                    Group = groupResult
+                };
+                _studentService.Create(students);
+                ConsoleColor.Green.WriteToConsole("Student is successfully created!");
             }
-            Student students = new()
+            catch (NotFoundException ex)
             {
-                Name = studentName,
-                Surname = studentSurname,
-                Age = studentAge,
-                Email = studentEmail,
-                Group = groupResult
-            };
-            _studentService.Create(students);
-            ConsoleColor.Green.WriteToConsole("Student is successfully created!");
+                ConsoleColor.Red.WriteToConsole(ex.Message);
+                return;
+            }
         }
         public void GetById()
         {
         id: ConsoleColor.Cyan.WriteToConsole("Enter the id which you want to get:");
             string idStr = Console.ReadLine();
-            if(string.IsNullOrWhiteSpace(idStr))
+            if (string.IsNullOrWhiteSpace(idStr))
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
                 goto id;
             }
             bool idIsCorrectFormat = int.TryParse(idStr, out int id);
-            if(!idIsCorrectFormat)
+            if (!idIsCorrectFormat)
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto id;
@@ -148,7 +152,7 @@ namespace CourseApplicationProject.Controllers
                 goto idDelete;
             }
             bool idDeleteIsCorrectFormat = int.TryParse(idStr, out int idDeleter);
-            if(!idDeleteIsCorrectFormat)
+            if (!idDeleteIsCorrectFormat)
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto idDelete;
@@ -162,7 +166,7 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole(ex.Message);
                 return;
             }
-           
+
             ConsoleColor.Green.WriteToConsole("Id is successfully deleted!");
         }
         public void GetStudentsByAge()
@@ -222,7 +226,7 @@ namespace CourseApplicationProject.Controllers
                 goto id;
             }
             bool idIsCorrectFormat = int.TryParse(idStr, out int id);
-            if(!idIsCorrectFormat)
+            if (!idIsCorrectFormat)
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto id;
@@ -245,12 +249,12 @@ namespace CourseApplicationProject.Controllers
         {
         nameOrSurname: ConsoleColor.Cyan.WriteToConsole("Enter student's name or surname to search:");
             string text = Console.ReadLine();
-            if(string.IsNullOrWhiteSpace(text))
+            if (string.IsNullOrWhiteSpace(text))
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
                 goto nameOrSurname;
             }
-           try
+            try
             {
                 var result = _studentService.GetStudentsByNameOrSurname(text);
                 foreach (var item in result)
@@ -264,6 +268,90 @@ namespace CourseApplicationProject.Controllers
                 return;
             }
         }
-    }
+        public void Update()
+        {
+        idInput: ConsoleColor.Cyan.WriteToConsole("Enter student's id to update: ");
+            string idStr = Console.ReadLine();
+            if (!int.TryParse(idStr, out int id))
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                goto idInput;
+            }
+            ConsoleColor.Cyan.WriteToConsole("Enter student's name:");
+            string name = Console.ReadLine();
+            ConsoleColor.Cyan.WriteToConsole("Enter student's surname:");
+            string surname = Console.ReadLine();
+            email: ConsoleColor.Cyan.WriteToConsole("Enter student's email:");
+            string email = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(email))
+            {
+                string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+                if (!Regex.IsMatch(email, pattern))
+                {
+                    ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                    goto email;
+                }
+            }
+            age: ConsoleColor.Cyan.WriteToConsole("Enter student's age:");
+            string ageStr = Console.ReadLine();
+            int age = -1;
+            if (!string.IsNullOrWhiteSpace(ageStr))
+            {
+                if (!int.TryParse(ageStr, out age))
+                {
+                    ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                    goto age;
+                }
+                if (!(age > 15 && age < 60))
+                {
+                    ConsoleColor.Red.WriteToConsole("Student's age must be between 15 and 60");
+                    goto age;
+                }
+            }
+        group: ConsoleColor.Cyan.WriteToConsole("Enter group's id which you want to move student:");
+            string groupIdStr = Console.ReadLine();
+            Group group = null;
+            if (!string.IsNullOrWhiteSpace(groupIdStr))
+            {
+                bool isCorrectIdFormat = int.TryParse(groupIdStr, out int groupId);
 
+                if (!isCorrectIdFormat)
+                {
+                    ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                    goto group;
+                }
+                try
+                {
+                    group = _groupService.GetById(groupId);
+                    if (group == null)
+                    {
+                        throw new NotFoundException("Group with this id was not found");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteToConsole(ex.Message);
+                    goto group;
+                }
+            }
+
+            Student student = new()
+            {
+                Name = name,
+                Surname = surname,
+                Email = email,
+                Age = age,
+                Group = group
+            };
+            try
+            {
+                _studentService.Update(id, student);
+                ConsoleColor.Green.WriteToConsole("Student updated successfully!");
+            }
+            catch (NotFoundException ex)
+            {
+                ConsoleColor.Red.WriteToConsole(ex.Message);
+            }
+        }
+    }
 }

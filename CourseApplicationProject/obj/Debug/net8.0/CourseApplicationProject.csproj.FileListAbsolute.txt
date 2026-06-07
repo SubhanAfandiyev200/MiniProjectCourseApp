@@ -20,3 +20,4 @@ C:\Users\User\Desktop\MiniProjectCourseApp\CourseApplicationProject\obj\Debug\ne
 C:\Users\User\Desktop\MiniProjectCourseApp\CourseApplicationProject\obj\Debug\net8.0\CourseApplicationProject.pdb
 C:\Users\User\Desktop\MiniProjectCourseApp\CourseApplicationProject\obj\Debug\net8.0\CourseApplicationProject.genruntimeconfig.cache
 C:\Users\User\Desktop\MiniProjectCourseApp\CourseApplicationProject\obj\Debug\net8.0\ref\CourseApplicationProject.dll
+C:\Users\User\Desktop\MiniProjectCourseApp\CourseApplicationProject\obj\Debug\net8.0\CourseApplicationProject.sourcelink.json
