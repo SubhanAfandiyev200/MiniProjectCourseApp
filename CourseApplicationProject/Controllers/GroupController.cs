@@ -30,6 +30,12 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
                 goto groupName;
             }
+            bool isValidGroupName = Regex.IsMatch(groupName, @"^[\p{L}0-9\s]{1,20}$");
+            if (!isValidGroupName)
+            {
+                ConsoleColor.Red.WriteToConsole("Groups name can be max 20 symbol!");
+                goto groupName;
+            }
             var group = _groupService.GetAll().FirstOrDefault(m => m.Name.Equals(groupName, StringComparison.OrdinalIgnoreCase));
             if (group != null)
             {
@@ -56,6 +62,12 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
                 goto roomName;
             }
+            bool isValidRoomName = Regex.IsMatch(roomName, @"^[\p{L}0-9\s]{1,20}$");
+            if (!isValidGroupName)
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                goto roomName;
+            }
             Group groups = new()
             {
                 Name = groupName,
@@ -63,7 +75,7 @@ namespace CourseApplicationProject.Controllers
                 RoomName = roomName
             };
             _groupService.Create(groups);
-            ConsoleColor.Green.WriteToConsole("Group is successfully created!");
+            ConsoleColor.Green.WriteToConsole("Room name can be max 20 symbol!");
         }
         public void GetAll()
         {
