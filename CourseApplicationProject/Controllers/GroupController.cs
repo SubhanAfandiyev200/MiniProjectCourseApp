@@ -33,10 +33,10 @@ namespace CourseApplicationProject.Controllers
             bool isValidGroupName = Regex.IsMatch(groupName, @"^[\p{L}0-9\s]{1,20}$");
             if (!isValidGroupName)
             {
-                ConsoleColor.Red.WriteToConsole("Groups name can be max 20 symbol!");
+                ConsoleColor.Red.WriteToConsole("Groups name can be max 20 symbol or format is wrong!");
                 goto groupName;
             }
-            var group = _groupService.GetAll().FirstOrDefault(m => m.Name.Equals(groupName, StringComparison.OrdinalIgnoreCase));
+            var group = _groupService.GetAll().FirstOrDefault(m => m.Name.Equals(groupName.Trim(), StringComparison.OrdinalIgnoreCase));
             if (group != null)
             {
                 ConsoleColor.Red.WriteToConsole("Group already exists!");
@@ -212,17 +212,23 @@ namespace CourseApplicationProject.Controllers
                 }
                 ConsoleColor.Cyan.WriteToConsole("Enter group's name:");
                 string name = Console.ReadLine();
+                var group = _groupService.GetAll().FirstOrDefault(m => m.Name.Equals(name.Trim(), StringComparison.OrdinalIgnoreCase));
+                if (group != null)
+                {
+                    ConsoleColor.Red.WriteToConsole("Group already exists!");
+                    return;
+                }
                 ConsoleColor.Cyan.WriteToConsole("Enter teacher's full name:");
                 string fullName = Console.ReadLine();
                 ConsoleColor.Cyan.WriteToConsole("Enter room's name:");
                 string roomName = Console.ReadLine();
-                Group group = new()
+                Group newGroup = new()
                 {
                     Name = name,
                     TeacherFullName = fullName,
                     RoomName = roomName
                 };
-                _groupService.Update(id, group);
+                _groupService.Update(id, newGroup);
 
                 ConsoleColor.Green.WriteToConsole("Group successfully updated!");
             }
