@@ -63,7 +63,7 @@ namespace Service.Services
         }
         public IEnumerable<Student> GetStudentsByNameOrSurname(string text)
         {
-            var result = _studentRepo.GetAllWithCondition(m => m.Name.Equals(text.Trim(), StringComparison.OrdinalIgnoreCase) || m.Surname.Equals(text.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
+            var result = _studentRepo.GetAllWithCondition(m => string.IsNullOrWhiteSpace(text) || m.Name.Equals(text.Trim(), StringComparison.OrdinalIgnoreCase) || m.Surname.Equals(text.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
             if(result.Count == 0)
             {
                 throw new NotFoundException("There aren't any students with this name or surname!");
@@ -97,6 +97,10 @@ namespace Service.Services
             {
                 result.Group = student.Group;
             }
+        }
+        public List<Student> GetAll()
+        {
+            return _studentRepo.GetAll();
         }
     }
 }

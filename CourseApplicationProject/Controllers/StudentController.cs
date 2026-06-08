@@ -247,13 +247,8 @@ namespace CourseApplicationProject.Controllers
         }
         public void GetStudentsByNameOrSurname()
         {
-        nameOrSurname: ConsoleColor.Cyan.WriteToConsole("Enter student's name or surname to search:");
+            ConsoleColor.Cyan.WriteToConsole("Enter student's name or surname to search:");
             string text = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                ConsoleColor.Red.WriteToConsole(ValidationMessages.Empty);
-                goto nameOrSurname;
-            }
             try
             {
                 var result = _studentService.GetStudentsByNameOrSurname(text);
@@ -277,10 +272,22 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto idInput;
             }
-            ConsoleColor.Cyan.WriteToConsole("Enter student's name:");
+        name: ConsoleColor.Cyan.WriteToConsole("Enter student's name:");
             string name = Console.ReadLine();
-            ConsoleColor.Cyan.WriteToConsole("Enter student's surname:");
+            bool nameIsCorrectFormat = int.TryParse(name, out int nameStr);
+            if(nameIsCorrectFormat)
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                goto name;
+            }
+        surname: ConsoleColor.Cyan.WriteToConsole("Enter student's surname:");
             string surname = Console.ReadLine();
+            bool surnameIsCorrectFormat = int.TryParse(surname, out int surnameStr);
+            if(surnameIsCorrectFormat)
+            {
+                ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                goto surname;
+            }
             email: ConsoleColor.Cyan.WriteToConsole("Enter student's email:");
             string email = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(email))
@@ -302,7 +309,7 @@ namespace CourseApplicationProject.Controllers
                     ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                     goto age;
                 }
-                if (!(age > 15 && age < 60))
+                if (!(age >= 15 && age <= 60))
                 {
                     ConsoleColor.Red.WriteToConsole("Student's age must be between 15 and 60");
                     goto age;
@@ -331,7 +338,7 @@ namespace CourseApplicationProject.Controllers
                 catch (Exception ex)
                 {
                     ConsoleColor.Red.WriteToConsole(ex.Message);
-                    goto group;
+                    return;
                 }
             }
 

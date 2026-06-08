@@ -219,7 +219,13 @@ namespace CourseApplicationProject.Controllers
                     return;
                 }
                 ConsoleColor.Cyan.WriteToConsole("Enter teacher's full name:");
-                string fullName = Console.ReadLine();
+            fullName: string fullName = Console.ReadLine();
+                bool fullNameIsCorrectFormat = int.TryParse(fullName, out int fullNameStr);
+                if(fullNameIsCorrectFormat)
+                {
+                    ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
+                    goto fullName;
+                }
                 ConsoleColor.Cyan.WriteToConsole("Enter room's name:");
                 string roomName = Console.ReadLine();
                 Group newGroup = new()
