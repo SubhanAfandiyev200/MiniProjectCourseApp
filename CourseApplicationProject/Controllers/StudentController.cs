@@ -218,7 +218,7 @@ namespace CourseApplicationProject.Controllers
         }
         public void GetStudentsByGroupId()
         {
-        id: ConsoleColor.Cyan.WriteToConsole("Enter the group's id which ypu want to get:");
+        id: ConsoleColor.Cyan.WriteToConsole("Enter the group's id which you want to get:");
             string idStr = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(idStr))
             {

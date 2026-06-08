@@ -75,7 +75,7 @@ namespace CourseApplicationProject.Controllers
                 RoomName = roomName
             };
             _groupService.Create(groups);
-            ConsoleColor.Green.WriteToConsole("Room name can be max 20 symbol!");
+            ConsoleColor.Green.WriteToConsole("Room is created successfully!");
         }
         public void GetAll()
         {
@@ -224,7 +224,7 @@ namespace CourseApplicationProject.Controllers
                 };
                 _groupService.Update(id, group);
 
-                ConsoleColor.Green.WriteToConsole("Group successfully created!");
+                ConsoleColor.Green.WriteToConsole("Group successfully updated!");
             }
             catch (NotFoundException ex)
             {

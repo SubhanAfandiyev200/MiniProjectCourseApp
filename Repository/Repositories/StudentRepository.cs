@@ -11,6 +11,5 @@ namespace Repository.Repositories
 {
     public class StudentRepository : BaseRepository<Student>, IStudentRepository
     {
-      
     }
 }
