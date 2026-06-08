@@ -83,6 +83,12 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole("Email format is wrong(For example: you@gmail.com).Please try again:");
                 goto studentEmail;
             }
+            var stuEmail = _groupService.GetAll().FirstOrDefault(m => m.Name.Equals(studentEmail.Trim(), StringComparison.OrdinalIgnoreCase));
+            if (stuEmail != null)
+            {
+                ConsoleColor.Red.WriteToConsole("Email already exists!");
+                return;
+            }
         group: ConsoleColor.Cyan.WriteToConsole("Enter group's Id:");
             string groupId = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(groupId))
@@ -299,7 +305,13 @@ namespace CourseApplicationProject.Controllers
                     goto email;
                 }
             }
-            age: ConsoleColor.Cyan.WriteToConsole("Enter student's age:");
+            var stuEmail = _groupService.GetAll().FirstOrDefault(m => m.Name.Equals(email.Trim(), StringComparison.OrdinalIgnoreCase));
+            if (stuEmail != null)
+            {
+                ConsoleColor.Red.WriteToConsole("Email already exists!");
+                return;
+            }
+        age: ConsoleColor.Cyan.WriteToConsole("Enter student's age:");
             string ageStr = Console.ReadLine();
             int age = -1;
             if (!string.IsNullOrWhiteSpace(ageStr))

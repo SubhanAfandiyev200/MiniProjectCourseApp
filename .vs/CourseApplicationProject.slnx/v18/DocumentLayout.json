@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5ABCA9DA-4E7A-40A8-3299-68D7789E3597}|CourseApplicationProject\\CourseApplicationProject.csproj|c:\\users\\subhanna\\desktop\\miniprojectcourseapp\\courseapplicationproject\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ABCA9DA-4E7A-40A8-3299-68D7789E3597}|CourseApplicationProject\\CourseApplicationProject.csproj|solutionrelative:courseapplicationproject\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5ABCA9DA-4E7A-40A8-3299-68D7789E3597}|CourseApplicationProject\\CourseApplicationProject.csproj|c:\\users\\subhanna\\desktop\\miniprojectcourseapp\\courseapplicationproject\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5ABCA9DA-4E7A-40A8-3299-68D7789E3597}|CourseApplicationProject\\CourseApplicationProject.csproj|solutionrelative:courseapplicationproject\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ABCA9DA-4E7A-40A8-3299-68D7789E3597}|CourseApplicationProject\\CourseApplicationProject.csproj|c:\\users\\subhanna\\desktop\\miniprojectcourseapp\\courseapplicationproject\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ABCA9DA-4E7A-40A8-3299-68D7789E3597}|CourseApplicationProject\\CourseApplicationProject.csproj|solutionrelative:courseapplicationproject\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{02B79BC5-153E-2FD9-CAE3-8149E0D9044F}|Service\\Service.csproj|c:\\users\\subhanna\\desktop\\miniprojectcourseapp\\service\\services\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -82,7 +82,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -106,26 +106,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GroupController.cs",
               "DocumentMoniker": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\CourseApplicationProject\\Controllers\\GroupController.cs",
               "RelativeDocumentMoniker": "CourseApplicationProject\\Controllers\\GroupController.cs",
               "ToolTip": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\CourseApplicationProject\\Controllers\\GroupController.cs",
               "RelativeToolTip": "CourseApplicationProject\\Controllers\\GroupController.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAcwOIAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAMkAAAAAAAAAAAAIwB8AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-06T20:23:28.383Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "StudentController.cs",
               "DocumentMoniker": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\CourseApplicationProject\\Controllers\\StudentController.cs",
               "RelativeDocumentMoniker": "CourseApplicationProject\\Controllers\\StudentController.cs",
               "ToolTip": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\CourseApplicationProject\\Controllers\\StudentController.cs",
               "RelativeToolTip": "CourseApplicationProject\\Controllers\\StudentController.cs",
-              "ViewState": "AgIAAOkAAAAAAAAAAAAqwPkAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAABUBAAAAAAAAAAAAADMBAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-06T21:37:49.121Z",
               "EditorCaption": ""
@@ -140,8 +140,7 @@
               "RelativeToolTip": "Service\\Services\\GroupService.cs",
               "ViewState": "AgIAAC0AAAAAAAAAAAAYwDoAAABgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-06T20:15:31.178Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-06T20:15:31.178Z"
             },
             {
               "$type": "Document",
@@ -153,8 +152,7 @@
               "RelativeToolTip": "Service\\Services\\StudentService.cs",
               "ViewState": "AgIAADMAAAAAAAAAAAAowEEAAABdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-06T21:37:42.731Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-06T21:37:42.731Z"
             },
             {
               "$type": "Document",
