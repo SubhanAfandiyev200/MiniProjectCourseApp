@@ -83,7 +83,7 @@ namespace CourseApplicationProject.Controllers
                 ConsoleColor.Red.WriteToConsole("Email format is wrong(For example: you@gmail.com).Please try again:");
                 goto studentEmail;
             }
-            var stuEmail = _groupService.GetAll().FirstOrDefault(m => m.Name.Equals(studentEmail.Trim(), StringComparison.OrdinalIgnoreCase));
+            var stuEmail = _studentService.GetAll().FirstOrDefault(m => m.Email.Equals(studentEmail.Trim(), StringComparison.OrdinalIgnoreCase));
             if (stuEmail != null)
             {
                 ConsoleColor.Red.WriteToConsole("Email already exists!");
@@ -280,21 +280,21 @@ namespace CourseApplicationProject.Controllers
             }
         name: ConsoleColor.Cyan.WriteToConsole("Enter student's name:");
             string name = Console.ReadLine();
-            bool nameIsCorrectFormat = int.TryParse(name, out int nameStr);
-            if(nameIsCorrectFormat)
+            bool isValidFullName = Regex.IsMatch(name, @"[^\p{L}\s]");
+            if (isValidFullName)
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                 goto name;
             }
         surname: ConsoleColor.Cyan.WriteToConsole("Enter student's surname:");
             string surname = Console.ReadLine();
-            bool surnameIsCorrectFormat = int.TryParse(surname, out int surnameStr);
-            if(surnameIsCorrectFormat)
+            bool isValidSurname = Regex.IsMatch(surname, @"[^\p{L}\s]");
+            if (isValidSurname)
             {
                 ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
-                goto surname;
+                goto name;
             }
-            email: ConsoleColor.Cyan.WriteToConsole("Enter student's email:");
+        email: ConsoleColor.Cyan.WriteToConsole("Enter student's email:");
             string email = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(email))
             {
@@ -305,7 +305,7 @@ namespace CourseApplicationProject.Controllers
                     goto email;
                 }
             }
-            var stuEmail = _groupService.GetAll().FirstOrDefault(m => m.Name.Equals(email.Trim(), StringComparison.OrdinalIgnoreCase));
+            var stuEmail = _studentService.GetAll().FirstOrDefault(m => m.Email.Equals(email.Trim(), StringComparison.OrdinalIgnoreCase));
             if (stuEmail != null)
             {
                 ConsoleColor.Red.WriteToConsole("Email already exists!");
@@ -369,7 +369,7 @@ namespace CourseApplicationProject.Controllers
             }
             catch (NotFoundException ex)
             {
-                ConsoleColor.Red.WriteToConsole(ex.Message);
+                ConsoleColor.Red.WriteToConsole("Student with this id not found!");
             }
         }
     }

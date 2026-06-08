@@ -57,7 +57,7 @@ namespace Service.Services
             var result = _studentRepo.GetAllWithCondition(m => m.Group.Id == id).ToList();
             if(result.Count == 0)
             {
-                throw new NotFoundException("No groups found with typed id!");
+                throw new NotFoundException("No students found with typed group id!");
             }
             return result;
         }

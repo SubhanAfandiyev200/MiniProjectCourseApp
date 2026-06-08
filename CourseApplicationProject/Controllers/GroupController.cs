@@ -218,10 +218,10 @@ namespace CourseApplicationProject.Controllers
                     ConsoleColor.Red.WriteToConsole("Group already exists!");
                     return;
                 }
-                ConsoleColor.Cyan.WriteToConsole("Enter teacher's full name:");
-            fullName: string fullName = Console.ReadLine();
-                bool fullNameIsCorrectFormat = int.TryParse(fullName, out int fullNameStr);
-                if(fullNameIsCorrectFormat)
+            fullName: ConsoleColor.Cyan.WriteToConsole("Enter teacher's full name:");
+                string fullName = Console.ReadLine();
+                bool isValidFullName = Regex.IsMatch(fullName, @"[^\p{L}\s]");
+                if (isValidFullName)
                 {
                     ConsoleColor.Red.WriteToConsole(ValidationMessages.WrongInput);
                     goto fullName;
