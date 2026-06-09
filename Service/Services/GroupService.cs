@@ -56,7 +56,7 @@ namespace Service.Services
         }
         public IEnumerable<Group> GetAllGroupsByTeacher(string fullName)
         {
-            var result = _groupRepo.GetAllWithCondition(m => string.IsNullOrWhiteSpace(fullName) || m.TeacherFullName.Contains(fullName.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
+            var result = _groupRepo.GetAllWithCondition(m => string.IsNullOrWhiteSpace(fullName) || m.TeacherFullName.Equals(fullName.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
             if(result.Count == 0)
             {
                 throw new NotFoundException("Group with this teacher fullname not found!");
@@ -65,7 +65,7 @@ namespace Service.Services
         }
         public IEnumerable<Group> GetAllGroupsByRoom(string roomName)
         {
-            var result = _groupRepo.GetAllWithCondition(m => string.IsNullOrWhiteSpace(roomName) || m.RoomName.Contains(roomName.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
+            var result = _groupRepo.GetAllWithCondition(m => string.IsNullOrWhiteSpace(roomName) || m.RoomName.Equals(roomName.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
             if(result.Count == 0)
             {
                 throw new NotFoundException("Group with this room name not found!");
