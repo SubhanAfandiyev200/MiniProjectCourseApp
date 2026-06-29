@@ -1,25 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\",
+  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\kohne proyekyyy\\MiniProjectCourseApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5ABCA9DA-4E7A-40A8-3299-68D7789E3597}|CourseApplicationProject\\CourseApplicationProject.csproj|c:\\users\\subhanna\\desktop\\miniprojectcourseapp\\courseapplicationproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ABCA9DA-4E7A-40A8-3299-68D7789E3597}|CourseApplicationProject\\CourseApplicationProject.csproj|solutionrelative:courseapplicationproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02B79BC5-153E-2FD9-CAE3-8149E0D9044F}|Service\\Service.csproj|c:\\users\\subhanna\\desktop\\miniprojectcourseapp\\service\\services\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{02B79BC5-153E-2FD9-CAE3-8149E0D9044F}|Service\\Service.csproj|c:\\users\\user\\desktop\\kohne proyekyyy\\miniprojectcourseapp\\service\\services\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{02B79BC5-153E-2FD9-CAE3-8149E0D9044F}|Service\\Service.csproj|solutionrelative:service\\services\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{02B79BC5-153E-2FD9-CAE3-8149E0D9044F}|Service\\Service.csproj|c:\\users\\subhanna\\desktop\\miniprojectcourseapp\\service\\services\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5ABCA9DA-4E7A-40A8-3299-68D7789E3597}|CourseApplicationProject\\CourseApplicationProject.csproj|c:\\users\\user\\desktop\\kohne proyekyyy\\miniprojectcourseapp\\courseapplicationproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ABCA9DA-4E7A-40A8-3299-68D7789E3597}|CourseApplicationProject\\CourseApplicationProject.csproj|solutionrelative:courseapplicationproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02B79BC5-153E-2FD9-CAE3-8149E0D9044F}|Service\\Service.csproj|c:\\users\\user\\desktop\\kohne proyekyyy\\miniprojectcourseapp\\service\\services\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{02B79BC5-153E-2FD9-CAE3-8149E0D9044F}|Service\\Service.csproj|solutionrelative:service\\services\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5ABCA9DA-4E7A-40A8-3299-68D7789E3597}|CourseApplicationProject\\CourseApplicationProject.csproj|c:\\users\\subhanna\\desktop\\miniprojectcourseapp\\courseapplicationproject\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5ABCA9DA-4E7A-40A8-3299-68D7789E3597}|CourseApplicationProject\\CourseApplicationProject.csproj|c:\\users\\user\\desktop\\kohne proyekyyy\\miniprojectcourseapp\\courseapplicationproject\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5ABCA9DA-4E7A-40A8-3299-68D7789E3597}|CourseApplicationProject\\CourseApplicationProject.csproj|solutionrelative:courseapplicationproject\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E528BBC3-1C26-8C35-F682-23718816ADCD}|Domain\\Domain.csproj|c:\\users\\subhanna\\desktop\\miniprojectcourseapp\\domain\\domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{E528BBC3-1C26-8C35-F682-23718816ADCD}|Domain\\Domain.csproj|c:\\users\\user\\desktop\\kohne proyekyyy\\miniprojectcourseapp\\domain\\domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{E528BBC3-1C26-8C35-F682-23718816ADCD}|Domain\\Domain.csproj|solutionrelative:domain\\domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -44,22 +44,21 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "GroupController.cs",
-              "DocumentMoniker": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\CourseApplicationProject\\Controllers\\GroupController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\kohne proyekyyy\\MiniProjectCourseApp\\CourseApplicationProject\\Controllers\\GroupController.cs",
               "RelativeDocumentMoniker": "CourseApplicationProject\\Controllers\\GroupController.cs",
-              "ToolTip": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\CourseApplicationProject\\Controllers\\GroupController.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\kohne proyekyyy\\MiniProjectCourseApp\\CourseApplicationProject\\Controllers\\GroupController.cs",
               "RelativeToolTip": "CourseApplicationProject\\Controllers\\GroupController.cs",
               "ViewState": "AgIAAKYAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T10:08:33.653Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T10:08:33.653Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\CourseApplicationProject\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\kohne proyekyyy\\MiniProjectCourseApp\\CourseApplicationProject\\Program.cs",
               "RelativeDocumentMoniker": "CourseApplicationProject\\Program.cs",
-              "ToolTip": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\CourseApplicationProject\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\kohne proyekyyy\\MiniProjectCourseApp\\CourseApplicationProject\\Program.cs",
               "RelativeToolTip": "CourseApplicationProject\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAADMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -69,25 +68,24 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Domain",
-              "DocumentMoniker": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\Domain\\Domain.csproj",
+              "Title": "Domain.csproj",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\kohne proyekyyy\\MiniProjectCourseApp\\Domain\\Domain.csproj",
               "RelativeDocumentMoniker": "Domain\\Domain.csproj",
-              "ToolTip": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\Domain\\Domain.csproj",
+              "ToolTip": "C:\\Users\\User\\Desktop\\kohne proyekyyy\\MiniProjectCourseApp\\Domain\\Domain.csproj",
               "RelativeToolTip": "Domain\\Domain.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-06-09T10:08:08.43Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T10:08:08.43Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "StudentService.cs",
-              "DocumentMoniker": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\Service\\Services\\StudentService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\kohne proyekyyy\\MiniProjectCourseApp\\Service\\Services\\StudentService.cs",
               "RelativeDocumentMoniker": "Service\\Services\\StudentService.cs",
-              "ToolTip": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\Service\\Services\\StudentService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\kohne proyekyyy\\MiniProjectCourseApp\\Service\\Services\\StudentService.cs",
               "RelativeToolTip": "Service\\Services\\StudentService.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAkwEEAAAC4AAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAAAswEEAAAC4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-09T09:55:44.57Z",
               "EditorCaption": ""
@@ -96,14 +94,13 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "GroupService.cs",
-              "DocumentMoniker": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\Service\\Services\\GroupService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\kohne proyekyyy\\MiniProjectCourseApp\\Service\\Services\\GroupService.cs",
               "RelativeDocumentMoniker": "Service\\Services\\GroupService.cs",
-              "ToolTip": "C:\\Users\\subhanna\\Desktop\\MiniProjectCourseApp\\Service\\Services\\GroupService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\kohne proyekyyy\\MiniProjectCourseApp\\Service\\Services\\GroupService.cs",
               "RelativeToolTip": "Service\\Services\\GroupService.cs",
               "ViewState": "AgIAAEEAAAAAAAAAAAAswEMAAAB1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T09:55:39.437Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T09:55:39.437Z"
             }
           ]
         }
